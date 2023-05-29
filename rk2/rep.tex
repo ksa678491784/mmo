@@ -1,0 +1,112 @@
+\RequirePackage{shellesc}
+\documentclass[a4paper]{article}
+\usepackage[document]{ragged2e}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{minted}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+\usepackage[font=large]{caption}
+\geometry{left=2cm}
+\geometry{right=2cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+\setmainfont{Liberation Serif}
+\setmonofont[Scale=0.7]{Hack}
+\titlelabel{\thetitle. }
+\renewcommand{\tablename}{Таблица}
+\renewcommand{\figurename}{Рисунок}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\renewcommand\large{\fontsize{14}{16}\selectfont}
+\renewcommand{\theFancyVerbLine}{\textbf{\arabic{FancyVerbLine}}}
+\sloppy
+
+\setminted{
+  linenos,
+  breaklines,
+  breakanywhere,
+  breaksymbolleft=,
+  fontsize=\fontsize{12}{12}\selectfont,
+  numbersep=5pt,
+}
+\usemintedstyle{emacs}
+
+\graphicspath{ {../4/pics/} }
+
+\begin{document}
+  \fontsize{14}{16}\selectfont
+
+  \begin{titlepage}
+    \begin{minipage}{0.2\textwidth}
+      \includegraphics[scale=0.4]{logo}
+    \end{minipage}
+    \begin{minipage}{0.7\textwidth}\centering
+      \fontsize{10}{12}\selectfont
+      \textbf{
+        Федеральное государственное бюджетное образовательное учреждение \\
+        высшего профессионального образования \\
+        «Московский государственный технический университет имени Н.Э. Баумана» \\
+        (МГТУ им. Н.Э. Баумана)
+      }
+    \end{minipage}
+
+    \vspace{5cm}
+    \centering
+    \fontsize{16}{20}\textbf{
+      Рубежный контроль №2 \\
+      по курсу «Методы машинного обучения» \\
+    }
+
+    \vspace{5cm}
+    \begin{flushright}
+    Выполнил \\
+    студент группы ИУ5-22М \\
+    XXXX \\
+    \end{flushright}
+    \vspace*{\fill}
+    Москва, 2023
+  \end{titlepage}
+
+  \justifying
+  \setlength{\parindent}{1.25cm}
+
+  \section{Задание}
+  Для одного из алгоритмов временных различий, реализованных Вами в соответствующей лабораторная работе:
+  \begin{itemize}
+    \item \textbf{SARSA}
+    \item Q-обучение
+    \item Двойное Q-обучение
+  \end{itemize}
+  осуществите подбор гиперпараметров. Критерием оптимизации должна являться суммарная награда.
+
+  \section{Текст программы}
+  \inputminted{python}{rk2.py}
+  Программа производит автоматический перебор параметров и находит оптимальные.
+  \pagebreak
+
+  \section{Графики}
+  Параметр eps:
+  \begin{figure}[H]
+    \includegraphics[scale=0.5]{rk21}
+  \end{figure}
+  Параметр lr:
+  \begin{figure}[H]
+    \includegraphics[scale=0.5]{rk22}
+  \end{figure}
+  \pagebreak
+  Параметр gamma:
+  \begin{figure}[H]
+    \includegraphics[scale=0.5]{rk23}
+  \end{figure}
+  Лучшие параметры: eps=0.1, lr=0.39, gamma=0.93
+  \begin{figure}[H]
+    \includegraphics[scale=0.5]{rk24}
+  \end{figure}
+  \pagebreak
+\end{document}
